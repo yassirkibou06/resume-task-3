@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+
+/* tailwind css */
+.box-input {
+    @apply flex flex-col
+}
+
+.input-in {
+    @apply border-gray-400 border w-[450px] rounded-md py-2 px-2
+}
