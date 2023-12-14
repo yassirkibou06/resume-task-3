@@ -71,8 +71,8 @@ const Form = () => {
                         <button className='border-red-500 border-2 font-medium rounded-3xl py-2 px-4 text-black mr-5' disabled={page === 0} onClick={() => setPage((currentPage) => currentPage - 1)}>Prev</button>
                         <button className='bg-red-500 font-medium rounded-3xl py-2 px-4 text-white' onClick={() => {
                             if (page === FormTitle.length - 1) {
-                                axios.post("http://localhost:5000/create-pdf", form)
-                                    .then(() => axios.get("http://localhost:5000/fetch-pdf", { responseType: "blob" }))
+                                axios.post("https://resume-task-3-server.vercel.app/create-pdf", form)
+                                    .then(() => axios.get("https://resume-task-3-server.vercel.app/fetch-pdf", { responseType: "blob" }))
                                     .then((res) => {
                                         const pdfBlob = new Blob([res.data], { type: "application/pdf" })
                                         saveAs(pdfBlob, "Resume.pdf")
