@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.post('/create-pdf', async (req, res) => {
     const html = pdfPage(req.body);
     pdf.create(html).toFile('Resume.pdf', (err) => {
-        if(err) {
+        if (err) {
             res.send(Promise.reject());
             console.log(err);
         }
@@ -31,6 +31,14 @@ app.get('/fetch-pdf', (req, res) => {
 })
 
 app.use(express.static('../client/build'));
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
