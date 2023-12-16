@@ -18,13 +18,14 @@ app.post('/create-pdf', async (req, res) => {
     const html = pdfPage(req.body);
     pdf.create(html).toFile('Resume.pdf', (err) => {
         if (err) {
-            res.send(Promise.reject());
-            console.log(err);
+            console.error('Error creating PDF:', err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            console.log('PDF created successfully');
+            res.status(200).send('PDF created successfully');
         }
-        res.send(Promise.resolve());
-        console.log('PDF created');
-    })
-})
+    });
+});
 
 app.get('/fetch-pdf', (req, res) => {
     res.sendFile(`${__dirname}/Resume.pdf`);
