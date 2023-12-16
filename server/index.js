@@ -14,18 +14,19 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const puppeteer = require('puppeteer');
+
 app.post('/create-pdf', async (req, res) => {
     const html = pdfPage(req.body);
-    pdf.create(html).toFile('Resume.pdf', (err) => {
-        if (err) {
-            console.error('Error creating PDF:', err);
-            res.status(500).send(`Internal Server Error: ${err.message}`);
-        } else {
-            console.log('PDF created successfully');
-            res.status(200).send('PDF created successfully');
-        }
-    });
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(html);
+    await page.pdf({ path: 'Resume.pdf', format: 'A4' });
+    await browser.close();
+
+    res.status(200).send('PDF created successfully');
 });
+
 
 
 app.get('/fetch-pdf', (req, res) => {
