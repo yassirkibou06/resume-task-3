@@ -11,6 +11,15 @@ app.use(cors({
     credentials: true,
 }));
 
+app.use(function (req, res, next) {
+
+    res.header('Access-Control-Allow-Origin', "http://localhost:4200");
+    res.header('Access-Control-Allow-Headers', true);
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
