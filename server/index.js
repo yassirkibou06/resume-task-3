@@ -4,9 +4,13 @@ const pdf = require('html-pdf');
 const pdfPage = require('./pdf');
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://resume-task-3-server.vercel.app',
+    credentials: true,
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -27,14 +31,6 @@ app.get('/fetch-pdf', (req, res) => {
 })
 
 app.use(express.static('../client/build'));
-
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://resume-task-3-server.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    next();
-});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
