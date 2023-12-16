@@ -8,15 +8,12 @@
     ],
     "routes": [
         {
-            "handle": "filesystem"
-        },
-        {
-            "src": "/create-pdf",
-            "dest": "/index.js"
-        },
-        {
-            "src": "/fetch-pdf",
-            "dest": "/index.js"
+            "src": "/(.*)",
+            "dest": "/",
+            "methods": ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            }
         }
     ]
 }
