@@ -1,28 +1,15 @@
 {
+    "version": 2,
     "builds": [
         {
             "src": "./index.js",
-            "use": "@vercel/node@latest"
+            "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/",
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-                "Access-Control-Allow-Credentials": "true"
-            },
-            "continue": true
-        },
-        {
-            "src": "/fetch-pdf",
-            "dest": "/api/fetch-pdf"
-        },
-        {
-            "src": "/create-pdf",
-            "dest": "/api/create-pdf"
+            "dest": "/"
         }
     ]
 }

@@ -1,16 +1,15 @@
 const express = require('express');
-const cors = require('cors');
+//const cors = require('cors');
 const pdf = require('html-pdf');
 const pdfPage = require('./pdf');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 5000 || process.env.PORT;
 
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/api/create-pdf', async (req, res) => {
+app.post('/create-pdf', async (req, res) => {
     try {
         const html = pdfPage(req.body);
         pdf.create(html).toFile('Resume.pdf', (err) => {
@@ -28,7 +27,7 @@ app.post('/api/create-pdf', async (req, res) => {
     }
 });
 
-app.get('/api/fetch-pdf', (req, res) => {
+app.get('/fetch-pdf', (req, res) => {
     res.sendFile(`${__dirname}/Resume.pdf`);
 });
 
@@ -38,26 +37,3 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
 
-/*
-{
-    "version": 2,
-    "builds": [
-        {
-            "src": "./index.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/",
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-                "Access-Control-Allow-Credentials": "true"
-            },
-            "continue": true
-        }
-    ]
-}
-*/
