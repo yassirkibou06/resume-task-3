@@ -37,3 +37,22 @@ app.use(express.static('../client/build'));
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+
+/*
+,
+        {
+            "src": "/(.*)",
+            "methods": ["OPTIONS"],
+            "dest": "index.js"
+        },
+        {
+            "src": "/create-pdf",
+            "methods": ["POST"],
+            "dest": "index.js"
+        },
+        {
+            "src": "/fetch-pdf",
+            "methods": ["GET"],
+            "dest": "index.js"
+        }*/

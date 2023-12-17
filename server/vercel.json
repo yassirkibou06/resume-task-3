@@ -8,28 +8,14 @@
     ],
     "routes": [
         {
-            "src": "(.*)",
+            "src": "/(.*)",
+            "dest": "/",
             "headers": {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
                 "Access-Control-Allow-Credentials": "true"
             },
             "continue": true
-        },
-        {
-            "src": "(.*)",
-            "methods": ["OPTIONS"],
-            "dest": "index.js"
-        },
-        {
-            "src": "/create-pdf",
-            "methods": ["POST"],
-            "dest": "/index.js"
-        },
-        {
-            "src": "/fetch-pdf",
-            "methods": ["GET"],
-            "dest": "/index.js"
         }
     ]
 }
