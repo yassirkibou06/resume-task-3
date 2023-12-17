@@ -1,12 +1,8 @@
 {
     "builds": [
         {
-            "src": ".",
-            "use": "@vercel/node@latest",
-            "command": "npm run deploy",
-            "env": {
-                "NODE_ENV": "production"
-            }
+            "src": "./(.*)",
+            "use": "@vercel/node@latest"
         }
     ],
     "routes": [
