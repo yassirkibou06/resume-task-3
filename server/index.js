@@ -1,11 +1,12 @@
 const express = require('express');
-//const cors = require('cors');
+const cors = require('cors');
 const pdf = require('html-pdf');
 const pdfPage = require('./pdf');
 
 const app = express();
 const port = 5000 || process.env.PORT;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
