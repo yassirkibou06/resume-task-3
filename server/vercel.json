@@ -1,3 +1,26 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "index.js" }]
+    "builds": [
+        {
+            "src": ".",
+            "use": "@vercel/node@latest",
+            "command": "npm run deploy",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        },
+        {
+            "src": "/fetch-pdf",
+            "dest": "/api/fetch-pdf"
+        },
+        {
+            "src": "/create-pdf",
+            "dest": "/api/create-pdf"
+        }
+    ]
 }
